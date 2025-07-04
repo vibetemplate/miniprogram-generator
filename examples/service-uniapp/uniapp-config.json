@@ -1,0 +1,422 @@
+{
+  "spec_version": "1.0",
+  "project": {
+    "name": "beauty-salon-uniapp",
+    "type": "service",
+    "appid": "wx2345678901bcdefg",
+    "title": "美丽时光美容院",
+    "description": "基于uni-app的跨平台美容服务预约应用，支持多端同步预约管理",
+    "version": "1.0.0",
+    "author": "美丽时光团队",
+    "keywords": ["uni-app", "美容", "预约", "服务", "跨平台"],
+    "category": "生活服务",
+    "homepage": "https://www.beautysalon.com",
+    "versionCode": 100
+  },
+  "business": {
+    "name": "美丽时光美容院",
+    "logo": {
+      "light": "/static/images/logo-light.png",
+      "dark": "/static/images/logo-dark.png"
+    },
+    "slogan": "专业护肤，美丽永恒，跨平台预约更便捷",
+    "contact": {
+      "phone": "010-8888-6666",
+      "email": "info@beautysalon.com",
+      "address": "北京市朝阳区美丽大厦3层",
+      "wechat": "beautysalon2024",
+      "website": "https://www.beautysalon.com",
+      "qq": "800886666"
+    },
+    "service_time": {
+      "weekdays": "10:00-21:00",
+      "weekends": "9:00-22:00",
+      "timezone": "Asia/Shanghai"
+    }
+  },
+  "platforms": {
+    "mp-weixin": {
+      "enabled": true,
+      "appid": "wx2345678901bcdefg",
+      "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "minified": true
+      }
+    },
+    "mp-alipay": {
+      "enabled": true,
+      "appid": "alipay_beauty_salon",
+      "setting": {
+        "minified": true
+      }
+    },
+    "h5": {
+      "enabled": true,
+      "title": "美丽时光 - 专业美容服务",
+      "template": "default",
+      "router": {
+        "mode": "history",
+        "base": "/"
+      }
+    },
+    "app": {
+      "enabled": false,
+      "name": "美丽时光APP",
+      "appid": "__UNI__BEAUTY01"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "name": "首页",
+      "type": "home",
+      "style": {
+        "navigationBarTitleText": "美丽时光",
+        "navigationBarBackgroundColor": "#ffc0cb",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#fff5f5",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+      },
+      "components": ["hero-banner", "service-categories", "technician-showcase", "promotion-cards", "store-info"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/home",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/services/index",
+      "name": "服务项目",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "服务项目",
+        "enablePullDownRefresh": true
+      },
+      "components": ["service-categories", "service-list", "price-filter", "duration-filter"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/services",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/booking/index",
+      "name": "在线预约",
+      "type": "form",
+      "style": {
+        "navigationBarTitleText": "在线预约"
+      },
+      "components": ["service-selector", "technician-picker", "date-time-picker", "contact-form", "booking-summary"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/booking",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/appointments/index",
+      "name": "我的预约",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "我的预约"
+      },
+      "components": ["appointment-tabs", "appointment-card", "calendar-view", "appointment-actions"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/appointments",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/technician/detail",
+      "name": "技师详情",
+      "type": "detail",
+      "style": {
+        "navigationBarTitleText": "技师详情"
+      },
+      "components": ["technician-profile", "service-list", "schedule-calendar", "review-list", "booking-button"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/technician/detail",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "name": "个人中心",
+      "type": "profile",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      },
+      "components": ["user-header", "membership-card", "appointment-history", "points-balance", "setting-menu"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/profile",
+        "mock": true,
+        "cache": true
+      }
+    }
+  ],
+  "tabBar": {
+    "enabled": true,
+    "color": "#7A7E83",
+    "selectedColor": "#ff69b4",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/tabbar/home.png",
+        "selectedIconPath": "/static/tabbar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/services/index",
+        "iconPath": "/static/tabbar/services.png",
+        "selectedIconPath": "/static/tabbar/services-active.png",
+        "text": "服务"
+      },
+      {
+        "pagePath": "pages/appointments/index",
+        "iconPath": "/static/tabbar/appointments.png",
+        "selectedIconPath": "/static/tabbar/appointments-active.png",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "/static/tabbar/profile.png",
+        "selectedIconPath": "/static/tabbar/profile-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "ServiceCard",
+      "type": "display",
+      "framework": "vue3",
+      "props": {
+        "service": {
+          "type": "Object",
+          "required": true,
+          "properties": {
+            "id": "number",
+            "name": "string",
+            "description": "string",
+            "price": "number",
+            "duration": "string",
+            "image": "string",
+            "rating": "number",
+            "category": "string"
+          }
+        },
+        "layout": {
+          "type": "String",
+          "default": "card",
+          "enum": ["card", "list", "grid"]
+        }
+      },
+      "events": ["click", "book-now", "add-favorite", "share"],
+      "slots": ["header", "footer", "badge"],
+      "style": "elegant-card",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    },
+    {
+      "name": "AppointmentScheduler",
+      "type": "form",
+      "framework": "vue3",
+      "props": {
+        "availableTimes": {
+          "type": "Array",
+          "required": true
+        },
+        "selectedService": {
+          "type": "Object",
+          "required": true
+        },
+        "selectedTechnician": {
+          "type": "Object",
+          "default": null
+        }
+      },
+      "events": ["time-select", "date-change", "confirm-booking", "cancel"],
+      "slots": ["header", "footer", "loading"],
+      "style": "calendar-modern",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    }
+  ],
+  "features": {
+    "login": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": ["wechat"],
+        "mp-alipay": ["alipay"],
+        "h5": ["wechat", "phone"],
+        "app": ["wechat", "phone", "qq"]
+      },
+      "auto_login": true,
+      "session_timeout": 7200
+    },
+    "payment": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": ["wechat_pay"],
+        "mp-alipay": ["alipay_pay"],
+        "h5": ["wechat_pay", "alipay_pay"],
+        "app": ["wechat_pay", "alipay_pay"]
+      },
+      "sandbox": true
+    },
+    "location": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": "tencent",
+        "mp-alipay": "amap",
+        "h5": "web_api",
+        "app": "native"
+      },
+      "precision": "gcj02",
+      "cache": true
+    },
+    "share": {
+      "enabled": true,
+      "platforms": {
+        "mp-weixin": {
+          "to_friends": true,
+          "to_timeline": false
+        },
+        "mp-alipay": {
+          "to_friends": true,
+          "to_timeline": true
+        },
+        "h5": {
+          "native": false,
+          "custom": true
+        }
+      }
+    },
+    "camera": {
+      "enabled": false,
+      "scan_code": false,
+      "photo": false,
+      "video": false
+    },
+    "storage": {
+      "local": true,
+      "cloud": {
+        "enabled": false,
+        "provider": "leancloud"
+      }
+    }
+  },
+  "design": {
+    "theme": "light",
+    "color_scheme": {
+      "primary": "#ffc0cb",
+      "secondary": "#fff5f5",
+      "success": "#34c759",
+      "warning": "#ff9500",
+      "error": "#ff3b30",
+      "text": {
+        "primary": "#000000",
+        "secondary": "#666666",
+        "placeholder": "#c0c4cc"
+      },
+      "background": {
+        "primary": "#ffffff",
+        "secondary": "#fff5f5",
+        "tertiary": "#ffeef0"
+      }
+    },
+    "typography": {
+      "font_family": "PingFangSC-Regular, sans-serif",
+      "font_sizes": {
+        "xs": "20rpx",
+        "sm": "24rpx",
+        "base": "28rpx",
+        "lg": "32rpx",
+        "xl": "36rpx",
+        "2xl": "40rpx"
+      }
+    },
+    "spacing": {
+      "xs": "8rpx",
+      "sm": "16rpx",
+      "base": "24rpx",
+      "lg": "32rpx",
+      "xl": "48rpx",
+      "2xl": "64rpx"
+    },
+    "border_radius": {
+      "sm": "12rpx",
+      "base": "16rpx",
+      "lg": "20rpx",
+      "xl": "28rpx",
+      "full": "50%"
+    },
+    "responsive": {
+      "enabled": true,
+      "breakpoints": {
+        "xs": "0",
+        "sm": "576rpx",
+        "md": "768rpx",
+        "lg": "992rpx",
+        "xl": "1200rpx"
+      }
+    }
+  },
+  "build": {
+    "typescript": {
+      "enabled": true,
+      "strict": true,
+      "declaration": false
+    },
+    "scss": {
+      "enabled": true,
+      "dart_sass": true
+    },
+    "optimization": {
+      "minify": true,
+      "tree_shaking": true,
+      "code_splitting": true,
+      "vendor_splitting": true
+    }
+  },
+  "deployment": {
+    "environments": {
+      "development": {
+        "api_base_url": "https://dev-api.beautysalon.com",
+        "debug": true,
+        "mock": true,
+        "source_map": true
+      },
+      "production": {
+        "api_base_url": "https://api.beautysalon.com",
+        "debug": false,
+        "mock": false,
+        "source_map": false
+      }
+    },
+    "platforms": {
+      "mp-weixin": {
+        "uploadCommand": "npm run build:mp-weixin",
+        "outputPath": "dist/build/mp-weixin"
+      },
+      "h5": {
+        "buildCommand": "npm run build:h5",
+        "outputPath": "dist/build/h5",
+        "publicPath": "/"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "miniprogram-generator",
+  "version": "1.0.0",
+  "description": "🚀 AI-powered uni-app miniprogram generator - Transform prompts into production-ready cross-platform applications",
+  "main": "index.js",
+  "scripts": {
+    "validate": "ajv validate -s schemas/uniapp-config.schema.json -d examples/*/uniapp-config.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vibetemplate/miniprogram-generator.git"
+  },
+  "keywords": [
+    "uni-app",
+    "miniprogram",
+    "vue3",
+    "typescript",
+    "cross-platform",
+    "ai",
+    "code-generation",
+    "automation",
+    "low-code",
+    "wechat-miniprogram",
+    "alipay-miniprogram",
+    "h5",
+    "app",
+    "artificial-intelligence",
+    "web-development",
+    "developer-tools"
+  ],
+  "author": "VibeTemplate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vibetemplate/miniprogram-generator/issues"
+  },
+  "homepage": "https://github.com/vibetemplate/miniprogram-generator#readme",
+  "devDependencies": {
+    "ajv-cli": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

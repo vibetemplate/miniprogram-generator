@@ -1,0 +1,428 @@
+{
+  "spec_version": "1.0",
+  "project": {
+    "name": "tech-news-uniapp",
+    "type": "content",
+    "appid": "wx3456789012cdefgh",
+    "title": "科技资讯",
+    "description": "基于uni-app的跨平台科技资讯应用，聚合全网优质科技内容",
+    "version": "1.0.0",
+    "author": "科技资讯团队",
+    "keywords": ["uni-app", "科技", "资讯", "新闻", "跨平台"],
+    "category": "新闻资讯",
+    "homepage": "https://www.technews.com",
+    "versionCode": 100
+  },
+  "business": {
+    "name": "科技资讯",
+    "logo": {
+      "light": "/static/images/logo-light.png",
+      "dark": "/static/images/logo-dark.png"
+    },
+    "slogan": "探索科技前沿，分享创新智慧，跨平台阅读体验",
+    "contact": {
+      "phone": "400-666-8888",
+      "email": "contact@technews.com",
+      "address": "深圳市南山区科技园创新大厦10层",
+      "wechat": "technews2024",
+      "website": "https://www.technews.com",
+      "qq": "800668888"
+    },
+    "service_time": {
+      "weekdays": "7:00-24:00",
+      "weekends": "7:00-24:00",
+      "timezone": "Asia/Shanghai"
+    }
+  },
+  "platforms": {
+    "mp-weixin": {
+      "enabled": true,
+      "appid": "wx3456789012cdefgh",
+      "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "minified": true
+      }
+    },
+    "mp-alipay": {
+      "enabled": true,
+      "appid": "alipay_tech_news",
+      "setting": {
+        "minified": true
+      }
+    },
+    "h5": {
+      "enabled": true,
+      "title": "科技资讯 - 探索科技前沿",
+      "template": "default",
+      "router": {
+        "mode": "history",
+        "base": "/"
+      }
+    },
+    "app": {
+      "enabled": true,
+      "name": "科技资讯APP",
+      "appid": "__UNI__TECHNEWS"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "name": "首页",
+      "type": "home",
+      "style": {
+        "navigationBarTitleText": "科技资讯",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f8f9fa",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+      },
+      "components": ["featured-banner", "hot-topics", "article-list", "category-tabs", "recommend-authors"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/home",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/category/index",
+      "name": "分类",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "分类浏览",
+        "enablePullDownRefresh": true
+      },
+      "components": ["category-grid", "article-list", "tag-filter", "sort-options"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/category",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/article/detail",
+      "name": "文章详情",
+      "type": "detail",
+      "style": {
+        "navigationBarTitleText": "文章详情"
+      },
+      "components": ["article-header", "article-content", "comment-section", "related-articles", "share-actions"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/article/detail",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/search/index",
+      "name": "搜索",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "搜索"
+      },
+      "components": ["search-bar", "search-history", "hot-keywords", "search-results"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/search",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/favorites/index",
+      "name": "收藏",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "我的收藏"
+      },
+      "components": ["favorites-tabs", "article-list", "collection-folders"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/favorites",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "name": "个人中心",
+      "type": "profile",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      },
+      "components": ["user-header", "reading-stats", "preference-settings", "app-settings"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"],
+      "data_source": {
+        "api": "/api/v1/profile",
+        "mock": true,
+        "cache": true
+      }
+    }
+  ],
+  "tabBar": {
+    "enabled": true,
+    "color": "#7A7E83",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/tabbar/home.png",
+        "selectedIconPath": "/static/tabbar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "iconPath": "/static/tabbar/category.png",
+        "selectedIconPath": "/static/tabbar/category-active.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/search/index",
+        "iconPath": "/static/tabbar/search.png",
+        "selectedIconPath": "/static/tabbar/search-active.png",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/favorites/index",
+        "iconPath": "/static/tabbar/favorites.png",
+        "selectedIconPath": "/static/tabbar/favorites-active.png",
+        "text": "收藏"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "/static/tabbar/profile.png",
+        "selectedIconPath": "/static/tabbar/profile-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "ArticleCard",
+      "type": "display",
+      "framework": "vue3",
+      "props": {
+        "article": {
+          "type": "Object",
+          "required": true,
+          "properties": {
+            "id": "number",
+            "title": "string",
+            "summary": "string",
+            "author": "string",
+            "publishTime": "string",
+            "readCount": "number",
+            "commentCount": "number",
+            "coverImage": "string",
+            "tags": "array"
+          }
+        },
+        "layout": {
+          "type": "String",
+          "default": "card",
+          "enum": ["card", "list", "minimal"]
+        }
+      },
+      "events": ["click", "share", "favorite", "comment"],
+      "slots": ["header", "footer", "tags"],
+      "style": "content-card",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    },
+    {
+      "name": "RichTextReader",
+      "type": "display",
+      "framework": "vue3",
+      "props": {
+        "content": {
+          "type": "String",
+          "required": true
+        },
+        "theme": {
+          "type": "String",
+          "default": "light",
+          "enum": ["light", "dark", "sepia"]
+        },
+        "fontSize": {
+          "type": "Number",
+          "default": 16
+        }
+      },
+      "events": ["image-click", "link-click", "copy-text"],
+      "slots": ["loading", "error"],
+      "style": "reading-mode",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    }
+  ],
+  "features": {
+    "login": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": ["wechat"],
+        "mp-alipay": ["alipay"],
+        "h5": ["wechat", "phone", "username"],
+        "app": ["wechat", "phone", "username", "qq", "apple"]
+      },
+      "auto_login": true,
+      "session_timeout": 7200
+    },
+    "payment": {
+      "enabled": false,
+      "providers": {},
+      "sandbox": true
+    },
+    "location": {
+      "enabled": false,
+      "providers": {},
+      "precision": "gcj02",
+      "cache": false
+    },
+    "share": {
+      "enabled": true,
+      "platforms": {
+        "mp-weixin": {
+          "to_friends": true,
+          "to_timeline": true
+        },
+        "mp-alipay": {
+          "to_friends": true,
+          "to_timeline": true
+        },
+        "h5": {
+          "native": false,
+          "custom": true
+        },
+        "app": {
+          "native": true,
+          "providers": ["wechat", "qq", "weibo"]
+        }
+      }
+    },
+    "camera": {
+      "enabled": false,
+      "scan_code": false,
+      "photo": false,
+      "video": false
+    },
+    "storage": {
+      "local": true,
+      "cloud": {
+        "enabled": true,
+        "provider": "leancloud"
+      }
+    }
+  },
+  "design": {
+    "theme": "auto",
+    "color_scheme": {
+      "primary": "#007aff",
+      "secondary": "#5ac8fa",
+      "success": "#34c759",
+      "warning": "#ff9500",
+      "error": "#ff3b30",
+      "text": {
+        "primary": "#000000",
+        "secondary": "#666666",
+        "placeholder": "#c0c4cc"
+      },
+      "background": {
+        "primary": "#ffffff",
+        "secondary": "#f8f9fa",
+        "tertiary": "#e9ecef"
+      }
+    },
+    "typography": {
+      "font_family": "PingFangSC-Regular, sans-serif",
+      "font_sizes": {
+        "xs": "20rpx",
+        "sm": "24rpx",
+        "base": "28rpx",
+        "lg": "32rpx",
+        "xl": "36rpx",
+        "2xl": "40rpx"
+      }
+    },
+    "spacing": {
+      "xs": "8rpx",
+      "sm": "16rpx",
+      "base": "24rpx",
+      "lg": "32rpx",
+      "xl": "48rpx",
+      "2xl": "64rpx"
+    },
+    "border_radius": {
+      "sm": "8rpx",
+      "base": "12rpx",
+      "lg": "16rpx",
+      "xl": "24rpx",
+      "full": "50%"
+    },
+    "responsive": {
+      "enabled": true,
+      "breakpoints": {
+        "xs": "0",
+        "sm": "576rpx",
+        "md": "768rpx",
+        "lg": "992rpx",
+        "xl": "1200rpx"
+      }
+    }
+  },
+  "build": {
+    "typescript": {
+      "enabled": true,
+      "strict": true,
+      "declaration": false
+    },
+    "scss": {
+      "enabled": true,
+      "dart_sass": true
+    },
+    "optimization": {
+      "minify": true,
+      "tree_shaking": true,
+      "code_splitting": true,
+      "vendor_splitting": true
+    }
+  },
+  "deployment": {
+    "environments": {
+      "development": {
+        "api_base_url": "https://dev-api.technews.com",
+        "debug": true,
+        "mock": true,
+        "source_map": true
+      },
+      "production": {
+        "api_base_url": "https://api.technews.com",
+        "debug": false,
+        "mock": false,
+        "source_map": false
+      }
+    },
+    "platforms": {
+      "mp-weixin": {
+        "uploadCommand": "npm run build:mp-weixin",
+        "outputPath": "dist/build/mp-weixin"
+      },
+      "h5": {
+        "buildCommand": "npm run build:h5",
+        "outputPath": "dist/build/h5",
+        "publicPath": "/"
+      },
+      "app": {
+        "buildCommand": "npm run build:app",
+        "outputPath": "dist/build/app"
+      }
+    }
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "spec_version": "1.0",
+  "project": {
+    "name": "fashion-store-uniapp",
+    "type": "ecommerce",
+    "appid": "wx1234567890abcdef",
+    "title": "时尚商城uni-app",
+    "description": "基于uni-app的跨平台时尚购物应用，一套代码多端运行",
+    "version": "1.0.0",
+    "author": "时尚商城团队",
+    "keywords": ["uni-app", "跨平台", "电商", "时尚", "购物"],
+    "category": "购物",
+    "homepage": "https://www.fashionstore.com",
+    "versionCode": 100
+  },
+  "business": {
+    "name": "时尚商城",
+    "logo": {
+      "light": "/static/images/logo-light.png",
+      "dark": "/static/images/logo-dark.png"
+    },
+    "slogan": "引领时尚，品质生活，跨平台购物新体验",
+    "contact": {
+      "phone": "400-888-9999",
+      "email": "service@fashionstore.com",
+      "address": "北京市朝阳区时尚大厦8层",
+      "wechat": "fashionstore2024",
+      "website": "https://www.fashionstore.com",
+      "qq": "800899999"
+    },
+    "service_time": {
+      "weekdays": "9:00-22:00",
+      "weekends": "10:00-21:00",
+      "timezone": "Asia/Shanghai"
+    }
+  },
+  "platforms": {
+    "mp-weixin": {
+      "enabled": true,
+      "appid": "wx1234567890abcdef",
+      "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "minified": true
+      }
+    },
+    "mp-alipay": {
+      "enabled": true,
+      "appid": "alipay_fashion_store",
+      "setting": {
+        "minified": true
+      }
+    },
+    "h5": {
+      "enabled": true,
+      "title": "时尚商城 - 跨平台购物体验",
+      "template": "default",
+      "router": {
+        "mode": "history",
+        "base": "/"
+      }
+    },
+    "app": {
+      "enabled": false,
+      "name": "时尚商城APP",
+      "appid": "__UNI__FASHION01"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "name": "首页",
+      "type": "home",
+      "style": {
+        "navigationBarTitleText": "时尚商城",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f8f8f8",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+      },
+      "components": ["banner-swiper", "category-grid", "product-waterfall", "brand-showcase"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/home",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/category/index",
+      "name": "分类",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "商品分类",
+        "enablePullDownRefresh": true
+      },
+      "components": ["category-sidebar", "product-grid", "filter-popup", "sort-tabs"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/category",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/product/detail",
+      "name": "商品详情",
+      "type": "detail",
+      "style": {
+        "navigationBarTitleText": "商品详情"
+      },
+      "components": ["product-gallery", "product-info", "spec-selector", "reviews-list", "recommend-products"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/product/detail",
+        "mock": true,
+        "cache": true
+      }
+    },
+    {
+      "path": "pages/cart/index",
+      "name": "购物车",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "购物车"
+      },
+      "components": ["cart-item", "settlement-bar", "coupon-selector"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/cart",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/order/list",
+      "name": "订单列表",
+      "type": "list",
+      "style": {
+        "navigationBarTitleText": "我的订单"
+      },
+      "components": ["order-tabs", "order-item", "order-actions"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/orders",
+        "mock": true,
+        "cache": false
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "name": "个人中心",
+      "type": "profile",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      },
+      "components": ["user-header", "order-shortcuts", "service-grid", "setting-list"],
+      "platforms": ["mp-weixin", "mp-alipay", "h5"],
+      "data_source": {
+        "api": "/api/v1/profile",
+        "mock": true,
+        "cache": true
+      }
+    }
+  ],
+  "tabBar": {
+    "enabled": true,
+    "color": "#7A7E83",
+    "selectedColor": "#ff6b35",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/tabbar/home.png",
+        "selectedIconPath": "/static/tabbar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "iconPath": "/static/tabbar/category.png",
+        "selectedIconPath": "/static/tabbar/category-active.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "/static/tabbar/cart.png",
+        "selectedIconPath": "/static/tabbar/cart-active.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "/static/tabbar/profile.png",
+        "selectedIconPath": "/static/tabbar/profile-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "ProductCard",
+      "type": "display",
+      "framework": "vue3",
+      "props": {
+        "product": {
+          "type": "Object",
+          "required": true,
+          "properties": {
+            "id": "number",
+            "name": "string",
+            "price": "number",
+            "originalPrice": "number",
+            "image": "string",
+            "rating": "number",
+            "sales": "number",
+            "tags": "array"
+          }
+        },
+        "layout": {
+          "type": "String",
+          "default": "vertical",
+          "enum": ["vertical", "horizontal"]
+        }
+      },
+      "events": ["click", "add-cart", "add-favorite", "share"],
+      "slots": ["header", "footer", "badge"],
+      "style": "modern-card",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    },
+    {
+      "name": "ShoppingCart",
+      "type": "business",
+      "framework": "vue3",
+      "props": {
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "total": {
+          "type": "Number",
+          "required": true
+        },
+        "discount": {
+          "type": "Number",
+          "default": 0
+        }
+      },
+      "events": ["change-quantity", "remove-item", "select-item", "checkout", "apply-coupon"],
+      "slots": ["header", "footer", "empty"],
+      "style": "floating-action",
+      "platforms": ["mp-weixin", "mp-alipay", "h5", "app"]
+    }
+  ],
+  "features": {
+    "login": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": ["wechat"],
+        "mp-alipay": ["alipay"],
+        "h5": ["wechat", "phone", "username"],
+        "app": ["wechat", "phone", "username", "qq"]
+      },
+      "auto_login": true,
+      "session_timeout": 7200
+    },
+    "payment": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": ["wechat_pay"],
+        "mp-alipay": ["alipay_pay"],
+        "h5": ["wechat_pay", "alipay_pay"],
+        "app": ["wechat_pay", "alipay_pay", "apple_pay"]
+      },
+      "sandbox": true
+    },
+    "location": {
+      "enabled": true,
+      "providers": {
+        "mp-weixin": "tencent",
+        "mp-alipay": "amap",
+        "h5": "web_api",
+        "app": "native"
+      },
+      "precision": "gcj02",
+      "cache": true
+    },
+    "share": {
+      "enabled": true,
+      "platforms": {
+        "mp-weixin": {
+          "to_friends": true,
+          "to_timeline": false
+        },
+        "mp-alipay": {
+          "to_friends": true,
+          "to_timeline": true
+        },
+        "h5": {
+          "native": false,
+          "custom": true
+        }
+      }
+    },
+    "camera": {
+      "enabled": true,
+      "scan_code": true,
+      "photo": false,
+      "video": false
+    },
+    "storage": {
+      "local": true,
+      "cloud": {
+        "enabled": false,
+        "provider": "leancloud"
+      }
+    }
+  },
+  "design": {
+    "theme": "light",
+    "color_scheme": {
+      "primary": "#ff6b35",
+      "secondary": "#fafafa",
+      "success": "#07c160",
+      "warning": "#ff9500",
+      "error": "#ff3b30",
+      "text": {
+        "primary": "#000000",
+        "secondary": "#666666",
+        "placeholder": "#c0c4cc"
+      },
+      "background": {
+        "primary": "#ffffff",
+        "secondary": "#f8f8f8",
+        "tertiary": "#f0f0f0"
+      }
+    },
+    "typography": {
+      "font_family": "PingFangSC-Regular, sans-serif",
+      "font_sizes": {
+        "xs": "20rpx",
+        "sm": "24rpx",
+        "base": "28rpx",
+        "lg": "32rpx",
+        "xl": "36rpx",
+        "2xl": "40rpx"
+      }
+    },
+    "spacing": {
+      "xs": "8rpx",
+      "sm": "16rpx",
+      "base": "24rpx",
+      "lg": "32rpx",
+      "xl": "48rpx",
+      "2xl": "64rpx"
+    },
+    "border_radius": {
+      "sm": "8rpx",
+      "base": "12rpx",
+      "lg": "16rpx",
+      "xl": "24rpx",
+      "full": "50%"
+    },
+    "responsive": {
+      "enabled": true,
+      "breakpoints": {
+        "xs": "0",
+        "sm": "576rpx",
+        "md": "768rpx",
+        "lg": "992rpx",
+        "xl": "1200rpx"
+      }
+    }
+  },
+  "build": {
+    "typescript": {
+      "enabled": true,
+      "strict": true,
+      "declaration": false
+    },
+    "scss": {
+      "enabled": true,
+      "dart_sass": true
+    },
+    "optimization": {
+      "minify": true,
+      "tree_shaking": true,
+      "code_splitting": true,
+      "vendor_splitting": true
+    }
+  },
+  "deployment": {
+    "environments": {
+      "development": {
+        "api_base_url": "https://dev-api.fashionstore.com",
+        "debug": true,
+        "mock": true,
+        "source_map": true
+      },
+      "production": {
+        "api_base_url": "https://api.fashionstore.com",
+        "debug": false,
+        "mock": false,
+        "source_map": false
+      }
+    },
+    "platforms": {
+      "mp-weixin": {
+        "uploadCommand": "npm run build:mp-weixin",
+        "outputPath": "dist/build/mp-weixin"
+      },
+      "h5": {
+        "buildCommand": "npm run build:h5",
+        "outputPath": "dist/build/h5",
+        "publicPath": "/"
+      }
+    }
+  }
+}

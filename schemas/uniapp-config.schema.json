@@ -1,0 +1,857 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "uni-app小程序配置",
+  "description": "用于生成uni-app跨平台小程序的配置文件规范",
+  "type": "object",
+  "required": ["spec_version", "project", "platforms", "pages"],
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "description": "配置规范版本",
+      "enum": ["1.0"]
+    },
+    "project": {
+      "type": "object",
+      "description": "项目基本信息",
+      "required": ["name", "type", "appid", "title", "description", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "项目名称（英文标识符）",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "type": {
+          "type": "string",
+          "description": "uni-app小程序类型",
+          "enum": ["ecommerce", "service", "content", "tool", "community"]
+        },
+        "appid": {
+          "type": "string",
+          "description": "微信小程序AppID",
+          "pattern": "^wx[a-f0-9]{16}$"
+        },
+        "title": {
+          "type": "string",
+          "description": "小程序标题",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "description": {
+          "type": "string",
+          "description": "小程序描述",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "version": {
+          "type": "string",
+          "description": "版本号",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "author": {
+          "type": "string",
+          "description": "开发者名称"
+        },
+        "keywords": {
+          "type": "array",
+          "description": "关键词",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "string",
+          "description": "小程序分类"
+        },
+        "homepage": {
+          "type": "string",
+          "description": "项目主页",
+          "format": "uri"
+        },
+        "versionName": {
+          "type": "string",
+          "description": "版本名称"
+        },
+        "versionCode": {
+          "type": "integer",
+          "description": "版本号码",
+          "minimum": 1
+        }
+      }
+    },
+    "business": {
+      "type": "object",
+      "description": "业务信息",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "公司/品牌名称"
+        },
+        "logo": {
+          "type": "object",
+          "description": "Logo配置",
+          "properties": {
+            "light": {
+              "type": "string",
+              "description": "浅色主题Logo路径"
+            },
+            "dark": {
+              "type": "string",
+              "description": "深色主题Logo路径"
+            }
+          }
+        },
+        "slogan": {
+          "type": "string",
+          "description": "品牌标语"
+        },
+        "contact": {
+          "type": "object",
+          "description": "联系信息",
+          "properties": {
+            "phone": {
+              "type": "string",
+              "description": "联系电话"
+            },
+            "email": {
+              "type": "string",
+              "description": "邮箱地址",
+              "format": "email"
+            },
+            "address": {
+              "type": "string",
+              "description": "地址"
+            },
+            "wechat": {
+              "type": "string",
+              "description": "微信号"
+            },
+            "website": {
+              "type": "string",
+              "description": "官网地址",
+              "format": "uri"
+            },
+            "qq": {
+              "type": "string",
+              "description": "QQ号码"
+            }
+          }
+        },
+        "service_time": {
+          "type": "object",
+          "description": "服务时间",
+          "properties": {
+            "weekdays": {
+              "type": "string",
+              "description": "工作日时间"
+            },
+            "weekends": {
+              "type": "string",
+              "description": "周末时间"
+            },
+            "timezone": {
+              "type": "string",
+              "description": "时区",
+              "default": "Asia/Shanghai"
+            }
+          }
+        }
+      }
+    },
+    "platforms": {
+      "type": "object",
+      "description": "平台配置",
+      "required": ["mp-weixin"],
+      "properties": {
+        "mp-weixin": {
+          "type": "object",
+          "description": "微信小程序配置",
+          "required": ["enabled"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用微信小程序"
+            },
+            "appid": {
+              "type": "string",
+              "description": "微信小程序AppID",
+              "pattern": "^wx[a-f0-9]{16}$"
+            },
+            "setting": {
+              "type": "object",
+              "description": "微信小程序设置",
+              "properties": {
+                "urlCheck": {
+                  "type": "boolean",
+                  "description": "是否检查安全域名",
+                  "default": false
+                },
+                "es6": {
+                  "type": "boolean",
+                  "description": "ES6转ES5",
+                  "default": true
+                },
+                "enhance": {
+                  "type": "boolean",
+                  "description": "增强编译",
+                  "default": true
+                },
+                "postcss": {
+                  "type": "boolean",
+                  "description": "PostCSS",
+                  "default": true
+                },
+                "minified": {
+                  "type": "boolean",
+                  "description": "代码压缩",
+                  "default": true
+                }
+              }
+            }
+          }
+        },
+        "mp-alipay": {
+          "type": "object",
+          "description": "支付宝小程序配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用支付宝小程序",
+              "default": false
+            },
+            "appid": {
+              "type": "string",
+              "description": "支付宝小程序AppID"
+            },
+            "setting": {
+              "type": "object",
+              "description": "支付宝小程序设置",
+              "properties": {
+                "minified": {
+                  "type": "boolean",
+                  "description": "代码压缩",
+                  "default": true
+                }
+              }
+            }
+          }
+        },
+        "h5": {
+          "type": "object",
+          "description": "H5配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用H5",
+              "default": false
+            },
+            "title": {
+              "type": "string",
+              "description": "H5应用标题"
+            },
+            "template": {
+              "type": "string",
+              "description": "H5模板",
+              "default": "default"
+            },
+            "router": {
+              "type": "object",
+              "description": "路由配置",
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "description": "路由模式",
+                  "enum": ["hash", "history"],
+                  "default": "history"
+                },
+                "base": {
+                  "type": "string",
+                  "description": "基础路径",
+                  "default": "/"
+                }
+              }
+            }
+          }
+        },
+        "app": {
+          "type": "object",
+          "description": "APP配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用APP",
+              "default": false
+            },
+            "name": {
+              "type": "string",
+              "description": "APP应用名称"
+            },
+            "appid": {
+              "type": "string",
+              "description": "APP应用ID",
+              "pattern": "^__UNI__[A-Z0-9]+$"
+            }
+          }
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "description": "页面配置",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "name", "type"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "页面路径",
+            "pattern": "^pages/[a-zA-Z0-9-_/]+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "页面名称"
+          },
+          "type": {
+            "type": "string",
+            "description": "页面类型",
+            "enum": ["home", "list", "detail", "form", "profile"]
+          },
+          "style": {
+            "type": "object",
+            "description": "页面样式配置",
+            "properties": {
+              "navigationBarTitleText": {
+                "type": "string",
+                "description": "导航栏标题"
+              },
+              "navigationBarBackgroundColor": {
+                "type": "string",
+                "description": "导航栏背景色",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "navigationBarTextStyle": {
+                "type": "string",
+                "description": "导航栏文字颜色",
+                "enum": ["black", "white"]
+              },
+              "backgroundColor": {
+                "type": "string",
+                "description": "背景色",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "backgroundTextStyle": {
+                "type": "string",
+                "description": "下拉背景字体",
+                "enum": ["light", "dark"]
+              },
+              "enablePullDownRefresh": {
+                "type": "boolean",
+                "description": "是否开启下拉刷新",
+                "default": false
+              },
+              "onReachBottomDistance": {
+                "type": "integer",
+                "description": "页面上拉触底事件触发时距页面底部距离",
+                "minimum": 0,
+                "default": 50
+              }
+            }
+          },
+          "components": {
+            "type": "array",
+            "description": "页面使用的组件",
+            "items": {
+              "type": "string"
+            }
+          },
+          "platforms": {
+            "type": "array",
+            "description": "支持的平台",
+            "items": {
+              "type": "string",
+              "enum": ["mp-weixin", "mp-alipay", "h5", "app"]
+            }
+          },
+          "data_source": {
+            "type": "object",
+            "description": "数据源配置",
+            "properties": {
+              "api": {
+                "type": "string",
+                "description": "API接口"
+              },
+              "mock": {
+                "type": "boolean",
+                "description": "是否使用模拟数据",
+                "default": false
+              },
+              "cache": {
+                "type": "boolean",
+                "description": "是否缓存数据",
+                "default": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "tabBar": {
+      "type": "object",
+      "description": "底部标签栏配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用标签栏",
+          "default": false
+        },
+        "color": {
+          "type": "string",
+          "description": "默认颜色",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "default": "#7A7E83"
+        },
+        "selectedColor": {
+          "type": "string",
+          "description": "选中颜色",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "default": "#3cc51f"
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "背景色",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "default": "#ffffff"
+        },
+        "borderStyle": {
+          "type": "string",
+          "description": "边框颜色",
+          "enum": ["black", "white"],
+          "default": "black"
+        },
+        "position": {
+          "type": "string",
+          "description": "位置",
+          "enum": ["bottom", "top"],
+          "default": "bottom"
+        },
+        "list": {
+          "type": "array",
+          "description": "标签列表",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["pagePath", "text"],
+            "properties": {
+              "pagePath": {
+                "type": "string",
+                "description": "页面路径"
+              },
+              "text": {
+                "type": "string",
+                "description": "标签文字"
+              },
+              "iconPath": {
+                "type": "string",
+                "description": "图标路径"
+              },
+              "selectedIconPath": {
+                "type": "string",
+                "description": "选中图标路径"
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "自定义组件配置",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "framework"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "组件名称"
+          },
+          "type": {
+            "type": "string",
+            "description": "组件类型",
+            "enum": ["display", "form", "navigation", "feedback", "business", "layout"]
+          },
+          "framework": {
+            "type": "string",
+            "description": "组件框架",
+            "enum": ["vue3", "vue2"],
+            "default": "vue3"
+          },
+          "props": {
+            "type": "object",
+            "description": "组件属性定义"
+          },
+          "events": {
+            "type": "array",
+            "description": "组件事件",
+            "items": {
+              "type": "string"
+            }
+          },
+          "slots": {
+            "type": "array",
+            "description": "组件插槽",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style": {
+            "type": "string",
+            "description": "组件样式风格"
+          },
+          "platforms": {
+            "type": "array",
+            "description": "支持的平台",
+            "items": {
+              "type": "string",
+              "enum": ["mp-weixin", "mp-alipay", "h5", "app"]
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "功能配置",
+      "properties": {
+        "login": {
+          "type": "object",
+          "description": "登录功能",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用登录",
+              "default": false
+            },
+            "providers": {
+              "type": "object",
+              "description": "各平台登录方式",
+              "properties": {
+                "mp-weixin": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["wechat"]
+                  }
+                },
+                "mp-alipay": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["alipay"]
+                  }
+                },
+                "h5": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["username", "phone", "wechat", "qq"]
+                  }
+                },
+                "app": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["username", "phone", "wechat", "qq", "apple"]
+                  }
+                }
+              }
+            },
+            "auto_login": {
+              "type": "boolean",
+              "description": "自动登录",
+              "default": true
+            },
+            "session_timeout": {
+              "type": "integer",
+              "description": "会话超时时间(秒)",
+              "default": 7200
+            }
+          }
+        },
+        "payment": {
+          "type": "object",
+          "description": "支付功能",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用支付",
+              "default": false
+            },
+            "providers": {
+              "type": "object",
+              "description": "各平台支付方式"
+            },
+            "sandbox": {
+              "type": "boolean",
+              "description": "沙箱模式",
+              "default": true
+            }
+          }
+        },
+        "location": {
+          "type": "object",
+          "description": "定位功能",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用定位",
+              "default": false
+            },
+            "providers": {
+              "type": "object",
+              "description": "各平台地图服务"
+            },
+            "precision": {
+              "type": "string",
+              "description": "坐标系类型",
+              "enum": ["wgs84", "gcj02"],
+              "default": "gcj02"
+            },
+            "cache": {
+              "type": "boolean",
+              "description": "是否缓存位置",
+              "default": true
+            }
+          }
+        },
+        "share": {
+          "type": "object",
+          "description": "分享功能",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用分享",
+              "default": true
+            },
+            "platforms": {
+              "type": "object",
+              "description": "各平台分享配置"
+            }
+          }
+        },
+        "camera": {
+          "type": "object",
+          "description": "相机功能",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用相机",
+              "default": false
+            },
+            "scan_code": {
+              "type": "boolean",
+              "description": "扫码功能",
+              "default": false
+            },
+            "photo": {
+              "type": "boolean",
+              "description": "拍照功能",
+              "default": false
+            },
+            "video": {
+              "type": "boolean",
+              "description": "录像功能",
+              "default": false
+            }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "description": "存储功能",
+          "properties": {
+            "local": {
+              "type": "boolean",
+              "description": "本地存储",
+              "default": true
+            },
+            "cloud": {
+              "type": "object",
+              "description": "云存储",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "是否启用云存储",
+                  "default": false
+                },
+                "provider": {
+                  "type": "string",
+                  "description": "云存储服务商",
+                  "enum": ["leancloud", "bmob", "firebase"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "design": {
+      "type": "object",
+      "description": "设计配置",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "description": "主题模式",
+          "enum": ["light", "dark", "auto"],
+          "default": "light"
+        },
+        "color_scheme": {
+          "type": "object",
+          "description": "颜色方案",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "主色调",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "default": "#007aff"
+            },
+            "secondary": {
+              "type": "string",
+              "description": "辅助色",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "default": "#5ac8fa"
+            },
+            "success": {
+              "type": "string",
+              "description": "成功色",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "default": "#34c759"
+            },
+            "warning": {
+              "type": "string",
+              "description": "警告色",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "default": "#ff9500"
+            },
+            "error": {
+              "type": "string",
+              "description": "错误色",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "default": "#ff3b30"
+            }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "description": "字体配置",
+          "properties": {
+            "font_family": {
+              "type": "string",
+              "description": "字体族",
+              "default": "PingFangSC-Regular, sans-serif"
+            },
+            "font_sizes": {
+              "type": "object",
+              "description": "字体大小"
+            }
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "description": "间距配置"
+        },
+        "border_radius": {
+          "type": "object",
+          "description": "圆角配置"
+        },
+        "responsive": {
+          "type": "object",
+          "description": "响应式配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用响应式",
+              "default": true
+            },
+            "breakpoints": {
+              "type": "object",
+              "description": "断点配置"
+            }
+          }
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "description": "构建配置",
+      "properties": {
+        "typescript": {
+          "type": "object",
+          "description": "TypeScript配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用TypeScript",
+              "default": true
+            },
+            "strict": {
+              "type": "boolean",
+              "description": "严格模式",
+              "default": true
+            }
+          }
+        },
+        "scss": {
+          "type": "object",
+          "description": "SCSS配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否启用SCSS",
+              "default": true
+            }
+          }
+        },
+        "optimization": {
+          "type": "object",
+          "description": "优化配置",
+          "properties": {
+            "minify": {
+              "type": "boolean",
+              "description": "代码压缩",
+              "default": true
+            },
+            "tree_shaking": {
+              "type": "boolean",
+              "description": "Tree Shaking",
+              "default": true
+            }
+          }
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "description": "部署配置",
+      "properties": {
+        "environments": {
+          "type": "object",
+          "description": "环境配置",
+          "properties": {
+            "development": {
+              "type": "object",
+              "description": "开发环境"
+            },
+            "staging": {
+              "type": "object",
+              "description": "测试环境"
+            },
+            "production": {
+              "type": "object",
+              "description": "生产环境"
+            }
+          }
+        }
+      }
+    }
+  }
+}
