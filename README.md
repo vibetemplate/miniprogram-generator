@@ -1,0 +1,2 @@
+# miniprogram-generator
+一个专为Cursor、Claude Code等AI开发工具设计的微信小程序生成器库。用户只需复制标准提示词，AI即可自动生成完整的现代化小程序代码。
